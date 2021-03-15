@@ -4,12 +4,11 @@
  * @Description: 轮播图
  * @Date: 2021-03-10 20:44:40
  * @LastEditors: East Wind
- * @LastEditTime: 2021-03-15 19:59:48
+ * @LastEditTime: 2021-03-15 20:16:46
 -->
 <template>
   <div class="slide-show">
     <div class="sentences">
-      <!-- <div v-for="item in sentences" :key="item.index">{{item.content}}</div> -->
       <div>{{sentences[currentIndex].content}}</div>
     </div>
     <div class="left-btn" id="left-btn" @click="leftClick">&lt;</div>
@@ -60,25 +59,17 @@ export default {
     // 定时器操作
     startTimer() {
       return setInterval(() => {
-        // console.log(this.currentIndex);
         this.currentIndex++;
         this.currentIndex = this.validCurrentIndex(this.currentIndex)
-        // console.log(this.currentIndex);
       }, this.interval)
     },
     // 检测currentIndex是否合法，并返回currentIndex
     validCurrentIndex(currentIndex) {
-      // alert(currentIndex)
-      // currentIndex++;
       if (currentIndex > 3) {
-        // console.log("-----------------------");
         currentIndex = 0
       } else if (currentIndex < 0) {
-        // console.log("---------------------------------");
         currentIndex = 3
       }
-      // console.log(currentIndex);
-      // alert(currentIndex)
       return currentIndex
     },
     // 点击左边的按钮
@@ -120,13 +111,6 @@ export default {
   border-radius: 10px;
   position: relative;
 }
-/* .sentences {
-  color: #dfe6e9;
-  overflow: hidden;
-}
-.sentences div {
-  margin-top: 130px;
-} */
 /* 文字部分：文字大小粗细颜色，div高度，水平居中， */
 .sentences {
   font-size: 3rem;
@@ -147,10 +131,12 @@ export default {
   font-size: 120px;
   cursor: pointer;
 }
+/* 左按钮位置 */
 .left-btn {
   top: 70px;
   left: 20px;
 }
+/* 右按钮位置 */
 .right-btn {
   top: 70px;
   right: 20px
@@ -163,15 +149,15 @@ export default {
 .left-btn:active, .right-btn:active {
   color: #fff;
 }
+/* 实心圆列表：子绝，去li前面的圆，设置大小，设置位置 */
 .dot-ul {
   position: absolute;
   list-style: none;
   font-size: 2.5rem;
-  /* width: 240px; */
-  /* margin: 0px auto -20px; */
   left: 420px;
   bottom: 0px;
 }
+/* 实心圆：行内块级元素，背景色，宽高，与兄弟的间距，形成实心圆，鼠标形状 */
 .dot-ul li {
   display: inline-block;
   background-color: #dfe6e9;
@@ -181,15 +167,12 @@ export default {
   border-radius: 50%;
   cursor: pointer;
 }
+/* 实心圆被点击 */
 .dot-li-active {
   background-color: #fff !important;
 }
+/* 实心圆被鼠标碰到 */
 .dot-ul li:hover {
   background-color: #fff;
 }
-
-/* .sentences-ui li span {
-  
-  font-size: 2rem;
-} */
 </style>
