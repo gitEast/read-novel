@@ -4,7 +4,7 @@
  * @Description: 搜索框组件
  * @Date: 2021-03-09 20:39:25
  * @LastEditors: East Wind
- * @LastEditTime: 2021-03-10 20:32:24
+ * @LastEditTime: 2021-03-11 18:46:06
 -->
 <template>
   <div class="search-bar content">
@@ -95,8 +95,11 @@ export default {
   letter-spacing: 0.3rem;
   padding: 6px 0;
   border: 1px solid #aaaaaa;
-  border-radius: 15px 0 0 15px;
+  border-radius: 10px 0 0 10px;
   outline: none;
+}
+.search-select select:hover {
+  border-color: skyblue;
 }
 .search-select select option {
   /* text-align-last: center; */
@@ -140,7 +143,7 @@ export default {
   /* vertical-align: middle */
   position: absolute;
   bottom: -1.04rem;
-  border-radius: 0 15px 15px 0;
+  border-radius: 0 10px 10px 0;
   /* outline: none; */
   /* vertical-align: text-top; */
 }
