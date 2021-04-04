@@ -1,13 +1,11 @@
 /*
  * @Author: your name
  * @Date: 2021-03-30 21:42:16
- * @LastEditTime: 2021-04-04 14:17:40
+ * @LastEditTime: 2021-04-04 14:34:16
  * @LastEditors: Please set LastEditors
  * @Description: 路由跳转
  * @FilePath: \read-novel\src\router\index.js
  */
-// import { createRouter, createWebHistory } from 'vue-router'
-// import VueRouter from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // 路由懒加载
@@ -50,9 +48,8 @@ const router = createRouter({
 })
 
 // 后置钩子改变网页title
-router.afterEach((to, from) => {
+router.afterEach((to) => {
   document.title = to.matched[0].meta.title
-  console.log(from);
 })
 
 // 导出路由

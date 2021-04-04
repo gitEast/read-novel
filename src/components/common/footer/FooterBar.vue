@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-26 21:00:43
- * @LastEditTime: 2021-03-27 22:24:18
+ * @LastEditTime: 2021-04-04 14:34:47
  * @LastEditors: Please set LastEditors
  * @Description: 尾部
  * @FilePath: \read-novel\src\components\common\footer\Footer.vue
@@ -68,12 +68,6 @@ a:hover {
 .email:hover {
   background-image: url('~assets/img/footer/email-02.png');
 }
-/* .email img {
-  width: 40px;
-  position: relative;
-  left: -11px;
-  cursor: pointer;
-} */
 .copyright {
   cursor: default;
 }

@@ -4,7 +4,7 @@
  * @Description: 最终完成的首页的两个小说卡片，暂定十本小说，其实应该是二十本，而且想换字体
  * @Date: 2021-03-15 21:18:05
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-03-26 20:07:26
+ * @LastEditTime: 2021-04-04 14:36:20
 -->
 <template>
   <div class="book-cards">
@@ -14,8 +14,8 @@
           <span>原创小说</span>
         </template>
         <book-card-item v-for="item in novels"
-                        :key="item.id"
-                        :item="item">
+          :key="item.id"
+          :item="item">
         </book-card-item>
       </book-card>
     </div>
@@ -24,9 +24,10 @@
         <template v-slot:novels-title>
           <span>衍生小说</span>
         </template>
-        <book-card-item v-for="item in novels"
-                        :key="item.id"
-                        :item="item">
+        <book-card-item 
+          v-for="item in novels"
+          :key="item.id"
+          :item="item">
         </book-card-item>
       </book-card>
     </div>

@@ -4,7 +4,7 @@
  * @Description: 书本列表卡片
  * @Date: 2021-03-15 20:26:44
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-03-26 20:04:26
+ * @LastEditTime: 2021-04-04 14:34:34
 -->
 <template>
   <div class="book-card">
@@ -36,9 +36,7 @@ export default {
 .novels-title {
   font-size: 2rem;
   font-weight: 600;
-  /* margin-bottom: 10px; */
   text-align: center;
-  /* border-bottom: 1px solid #2d3436; */
   color: #2d3436;
 }
 </style>

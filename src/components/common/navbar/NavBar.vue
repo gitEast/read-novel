@@ -4,7 +4,7 @@
  * @Description: 导航栏组件
  * @Date: 2021-02-28 22:38:45
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-04 14:25:50
+ * @LastEditTime: 2021-04-04 14:35:05
 -->
 <template>
   <div class="top">
@@ -29,7 +29,6 @@ export default {
   .nav-bar {
     height: 50px;
     margin: 0 auto;
-    /* background-color: #636e72; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -37,18 +36,11 @@ export default {
   }
 
   .logo {
-    /* float: left; */
     line-height: 50px;
   }
 
   .logo >>> img {
     width: 30px;
     vertical-align: middle;
-    /* line-height: 50px; */
   }
-
-  /* .right {
-    float: right;
-    line-height: 50px;
-  } */
 </style>

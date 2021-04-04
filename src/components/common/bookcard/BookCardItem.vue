@@ -4,7 +4,7 @@
  * @Description: 小说名 + 作者名
  * @Date: 2021-03-15 20:26:55
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-04 13:56:25
+ * @LastEditTime: 2021-04-04 14:32:41
 -->
 <template>
   <div class="book-card-item">
@@ -17,7 +17,6 @@ export default {
   name: 'BookCardItem',
   props: ['item'],
   mounted() {
-    // console.log(this.item)
   }
 }
 </script>

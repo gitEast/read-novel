@@ -3,22 +3,13 @@
  * @Author: East Wind
  * @Description: 搜索框组件
  * @Date: 2021-03-09 20:39:25
- * @LastEditors: East Wind
- * @LastEditTime: 2021-03-11 18:46:06
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-04-04 14:35:44
 -->
 <template>
   <div class="search-bar content">
     <div class="search-select">
-      <!-- <el-select v-model="value" placeholder="请选择">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select> -->
       <select v-model="value" placeholder="请选择">
-        <!-- <option value="请选择" disabled selected>请选择</option> -->
         <option
           v-for="item in options"
           :key="item.value"
@@ -28,11 +19,6 @@
       </select>
     </div>
     <div class="search-input">
-      <!-- <el-input
-        placeholder="请输入内容"
-        v-model="input"
-        clearable="clearable">
-      </el-input> -->
       <input 
         type="text" 
         name="" 
@@ -102,13 +88,8 @@ export default {
   border-color: skyblue;
 }
 .search-select select option {
-  /* text-align-last: center; */
-  /* text-indent: 8rem; */
   font-size: 1rem;
 }
-/* .search-select >>> .el-input__inner {
-  font-size: 1.5rem;
-} */
 /* 输入框样式 */
 .search-input {
   display: inline-block;

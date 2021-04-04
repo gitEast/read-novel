@@ -4,7 +4,7 @@
  * @Description: 导航栏最终呈现
  * @Date: 2021-02-28 22:43:30
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-04 14:24:25
+ * @LastEditTime: 2021-04-04 14:32:56
 -->
 <template>
   <div>
@@ -15,15 +15,6 @@
           <template v-slot:right-01><div @click="jumpTo('/library')">Library</div></template>
           <template v-slot:right-02><div @click="jumpTo('/discuss')">Discuss</div></template>
           <template v-slot:right-03><div @click="jumpTo('/profile')">Login</div></template>
-          <!-- <nav-bar-right-link path="/libarary">
-            <template><div>Library</div></template>
-          </nav-bar-right-link>
-          <nav-bar-right-link path="/discuss">
-            <template><div>Discuss</div></template>
-          </nav-bar-right-link>
-          <nav-bar-right-link path="/profile">
-            <template><div>Login</div></template>
-          </nav-bar-right-link> -->
         </nav-bar-right>
       </template>
     </nav-bar>
@@ -42,7 +33,6 @@ export default {
   methods: {
     jumpTo(path) {
       this.$router.push(path)
-      console.log(path);
     }
   },
 }
