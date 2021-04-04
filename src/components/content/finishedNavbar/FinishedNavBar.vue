@@ -3,8 +3,8 @@
  * @Author: East Wind
  * @Description: 导航栏最终呈现
  * @Date: 2021-02-28 22:43:30
- * @LastEditors: East Wind
- * @LastEditTime: 2021-02-28 22:54:02
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-04-04 14:24:25
 -->
 <template>
   <div>
@@ -12,9 +12,18 @@
       <template v-slot:logo><img src="~assets/img/logo.png" alt="logo图片"></template>
       <template v-slot:right>
         <nav-bar-right>
-          <template v-slot:right-01>Library</template>
-          <template v-slot:right-02>Discuss</template>
-          <template v-slot:right-03>Login</template>
+          <template v-slot:right-01><div @click="jumpTo('/library')">Library</div></template>
+          <template v-slot:right-02><div @click="jumpTo('/discuss')">Discuss</div></template>
+          <template v-slot:right-03><div @click="jumpTo('/profile')">Login</div></template>
+          <!-- <nav-bar-right-link path="/libarary">
+            <template><div>Library</div></template>
+          </nav-bar-right-link>
+          <nav-bar-right-link path="/discuss">
+            <template><div>Discuss</div></template>
+          </nav-bar-right-link>
+          <nav-bar-right-link path="/profile">
+            <template><div>Login</div></template>
+          </nav-bar-right-link> -->
         </nav-bar-right>
       </template>
     </nav-bar>
@@ -29,7 +38,13 @@ export default {
   components: {
     NavBar,
     NavBarRight
-  }
+  },
+  methods: {
+    jumpTo(path) {
+      this.$router.push(path)
+      console.log(path);
+    }
+  },
 }
 </script>
 <style scoped>
