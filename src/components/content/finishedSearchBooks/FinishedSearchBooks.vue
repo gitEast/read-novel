@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-04 19:23:09
- * @LastEditTime: 2021-04-05 17:34:54
+ * @LastEditTime: 2021-04-05 17:46:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \read-novel\src\components\content\finishedSearchBooks\FinishedSearchBooks.vue
@@ -65,8 +65,6 @@
   </div>
 </template>
 <script>
-// import ResultStatistics from 'components/common/searchbooks/ResultStatistics'
-// import ResultBooks from 'components/common/searchbooks/ResultBooks'
 
 export default {
   name: 'FinishedSearchBooks',
@@ -214,7 +212,7 @@ export default {
 /* 重置el-table的CSS：鼠标形状，外间距 */
 .reset-table {
   cursor: default;
-  margin: 10px auto 20px;
+  margin: 0 auto 20px;
 }
 
 /* 重置a链接的CSS：去下划线，字体颜色 */

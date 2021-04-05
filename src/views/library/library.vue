@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-27 22:02:16
- * @LastEditTime: 2021-04-04 19:36:12
+ * @LastEditTime: 2021-04-05 17:38:28
  * @LastEditors: Please set LastEditors
  * @Description: 书籍搜索页
  * @FilePath: \read-novel\src\views\library\Library.vue
@@ -11,7 +11,6 @@
     <search-bar></search-bar>
     <finished-search-tags></finished-search-tags>
     <finished-search-books></finished-search-books>
-        
   </div>
 </template>
 <script>

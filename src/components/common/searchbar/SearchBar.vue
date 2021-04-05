@@ -4,7 +4,7 @@
  * @Description: 搜索框组件
  * @Date: 2021-03-09 20:39:25
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-04 14:35:44
+ * @LastEditTime: 2021-04-05 17:39:24
 -->
 <template>
   <div class="search-bar content">
@@ -53,7 +53,7 @@ export default {
         },
         {
           value: '4',
-          label: 'ID'
+          label: '贴名'
         }
       ],
       value: '1',
