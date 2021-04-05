@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-27 22:02:16
- * @LastEditTime: 2021-04-04 15:40:36
+ * @LastEditTime: 2021-04-04 19:36:12
  * @LastEditors: Please set LastEditors
  * @Description: 书籍搜索页
  * @FilePath: \read-novel\src\views\library\Library.vue
@@ -10,19 +10,21 @@
   <div id="library">
     <search-bar></search-bar>
     <finished-search-tags></finished-search-tags>
-    <div>Page Library</div>
+    <finished-search-books></finished-search-books>
         
   </div>
 </template>
 <script>
 import SearchBar from 'components/common/searchbar/SearchBar'
 import FinishedSearchTags from 'components/content/finishedSearchTags/FinishedSearchTags'
+import FinishedSearchBooks from 'components/content/finishedSearchBooks/FinishedSearchBooks'
 
 export default {
   name: 'Library',
   components: {
     SearchBar,
-    FinishedSearchTags
+    FinishedSearchTags,
+    FinishedSearchBooks
   }
 }
 </script>
