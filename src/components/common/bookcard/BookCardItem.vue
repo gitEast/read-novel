@@ -4,20 +4,23 @@
  * @Description: 小说名 + 作者名
  * @Date: 2021-03-15 20:26:55
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-04 14:32:41
+ * @LastEditTime: 2021-04-12 02:18:18
 -->
 <template>
   <div class="book-card-item">
-    <div class="novel-name">《{{item.name}}》</div>
-    <div class="novel-author">by{{item.author}}</div>
+    <div class="novel-name" @click="toNovel(item.nid)">《{{item.ntitle}}》</div>
+    <div class="novel-author">by{{item.nauthor}}</div>
   </div>
 </template>
 <script>
 export default {
   name: 'BookCardItem',
   props: ['item'],
-  mounted() {
-  }
+  methods: {
+    toNovel(id) {
+      this.$router.push('/novel/' + id)
+    }
+  },
 }
 </script>
 <style scoped>
@@ -35,9 +38,11 @@ export default {
 /* 小说题目：字体大小 */
 .novel-name {
   font-size: 1.5rem;
+  cursor: pointer;
 }
 /* 作者：字体大小 */
 .novel-author {
   font-size: 1.4rem;
+  cursor: default;
 }
 </style>

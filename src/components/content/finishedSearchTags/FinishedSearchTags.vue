@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-04 15:39:28
- * @LastEditTime: 2021-04-04 19:32:19
+ * @LastEditTime: 2021-04-11 02:34:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \read-novel\src\components\content\finishedSearchTags\FinishedSearchTags.vue
@@ -33,7 +33,7 @@
         <div class="tag-title">特点：</div>
       </template>
     </search-tags>
-    <div class="search"><button type="button" class="searchBtn">搜索</button></div>
+    <div class="search"><button type="button" class="searchBtn" @click="search">搜索</button></div>
   </div>
 </template>
 <script>
@@ -97,70 +97,88 @@ export default {
       ],
       featureTags: [
         {
+          id: 0,
           label: '盗墓',
           checked: 0
         }, 
         {
+          id: 1,
           label: '快穿',
           checked: 0
         }, 
         {
+          id: 2,
           label: '星际',
           checked: 0
         }, 
         {
+          id: 3,
           label: '西幻',
           checked: 0
         }, 
         {
+          id: 4,
           label: '修真',
           checked: 0
         }, 
         {
+          id: 5,
           label: '武侠',
           checked: 0
         }, 
         {
+          id: 6,
           label: '血族',
           checked: 0
         }, 
         {
+          id: 7,
           label: '宅斗',
           checked: 0
         }, 
         {
+          id: 8,
           label: '科举',
           checked: 0
         }, 
         {
+          id: 9,
           label: '种田',
           checked: 0
         }, 
         {
+          id: 10,
           label: '校园',
           checked: 0
         }, 
         {
+          id: 11,
           label: '职场',
           checked: 0
         }, 
         {
+          id: 12,
           label: '美食',
           checked: 0
         }, 
         {
+          id: 13,
           label: '玄学',
           checked: 0
         }, 
         {
+          id: 14,
           label: '虐恋',
           checked: 0
         }, 
         {
+          id: 15,
           label: '机甲',
           checked: 0
         }
-      ]
+      ],
+      allNovels: [],
+      realNovels: []
     }
   },
   components: {
@@ -192,7 +210,116 @@ export default {
       let index = arguments[0]
       let checked = arguments[1]
       this.featureTags[index].checked = checked
+    },
+    // 获取真正符合条件的novel对象，即包含feature的tag
+    getRealNovels() {
+      this.realNovels = []
+      // 判断是否有feature被选中
+      let flag = this.featureTags.some(item => {
+        if (item.checked) {
+          return true
+        }
+      })
+      // 如果没有，则直接返回
+      if (!flag) {
+        this.realNovels = this.allNovels
+        return
+      }
+      // 如果有
+      let feature = []
+      // 获取所有选中的feature的tag
+      this.featureTags.forEach(tag => {
+        if (tag.checked) {
+          let id = tag.id.toString()
+          feature.push(id)
+        }
+      });
+      // 获取真正符合条件的novel
+      feature.forEach(id => {
+        this.allNovels.forEach(novel => {
+          if (novel.nfeature !== null) {
+            if ((novel.nfeature.indexOf(id) !== -1) && (this.realNovels.indexOf(novel) === -1)) {
+              this.realNovels.push(novel)
+            }
+          }
+        });
+      });
+    },
+    search() {
+      const config = {
+        nschedule: '(nschedule = 0 OR nschedule = 1)',
+        noriginal: '(noriginal = 0 OR noriginal = 1)',
+        ntime: '(ntime = 0 OR ntime = 1 OR ntime = 2 OR ntime = 3)',
+        nstyle: '(nstyle = 0 OR nstyle = 1 OR nstyle = 2)'
+      }
+      // 进度
+      let nschedule = []
+      if (this.scheduleTags[0].checked) {
+        nschedule.push('nschedule = 0')
+      }
+      if (this.scheduleTags[1].checked) {
+        nschedule.push('nschedule = 1')
+      }
+      if (nschedule.length === 1) {
+        config.nschedule = '(' + nschedule[0] + ')'
+      }
+      // 原创
+      let noriginal = []
+      if (this.originalTags[0].checked) {
+        noriginal.push('noriginal = 0')
+      }
+      if (this.originalTags[1].checked) {
+        noriginal.push('noriginal = 1')
+      }
+      if (noriginal.length === 1) {
+        config.noriginal = '(' + noriginal[0] + ')'
+      }
+      // 时代
+      let ntime = []
+      if (this.timeTags[0].checked) {
+        ntime.push('ntime = 0')
+      }
+      if (this.timeTags[1].checked) {
+        ntime.push('ntime = 1')
+      }
+      if (this.timeTags[2].checked) {
+        ntime.push('ntime = 2')
+      }
+      if (this.timeTags[3].checked) {
+        ntime.push('ntime = 3')
+      }
+      if (ntime.length === 1) {
+        config.ntime = '(' + ntime[0] + ')'
+      } else if (ntime.length > 1) {
+        config.ntime = '(' + ntime.join(' OR ') + ')'
+      }
+      // 风格
+      let nstyle = []
+      if (this.styleTags[0].checked) {
+        nstyle.push('nstyle = 0')
+      }
+      if (this.styleTags[1].checked) {
+        nstyle.push('nstyle = 1')
+      }
+      if (this.styleTags[0].checked) {
+        nstyle.push('nstyle = 1')
+      }
+      if (nstyle.length === 1) {
+        config.nstyle = '(' + nstyle[0] + ')'
+      } else if (nstyle.length > 1) {
+        config.nstyle = '(' + nstyle.join(' OR ') + ')'
+      }
+      this.$post('/novel/searchall', config)
+        .then(res => {
+          this.allNovels = res
+          this.getRealNovels()
+          this.$emit('getNovels', this.realNovels)
+          this.$bus.emit('novels', this.realNovels)
+        })
     }
+  },
+  created() {
+    this.search()
   },
 }
 </script>

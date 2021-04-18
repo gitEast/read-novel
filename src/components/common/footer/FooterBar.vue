@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-26 21:00:43
- * @LastEditTime: 2021-04-04 14:34:47
+ * @LastEditTime: 2021-04-05 20:05:28
  * @LastEditors: Please set LastEditors
  * @Description: 尾部
  * @FilePath: \read-novel\src\components\common\footer\Footer.vue
@@ -9,7 +9,7 @@
 <template>
   <div class="footer">
     <div class="links">
-      <a href="#">首页</a>
+      <a href="#" @click="gotoHome">首页</a>
       <a href="#">博客</a>
       <a href="https://github.com/gitEast/read-novel" target="_blank">github</a>
     </div>
@@ -22,7 +22,13 @@
 </template>
 <script>
 export default {
-  name: 'FooterBar'
+  name: 'FooterBar',
+  methods: {
+    gotoHome() {
+      this.$router.push('/')
+      return false
+    }
+  },
 }
 </script>
 <style scoped>

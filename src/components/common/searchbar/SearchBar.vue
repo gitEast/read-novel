@@ -4,7 +4,7 @@
  * @Description: 搜索框组件
  * @Date: 2021-03-09 20:39:25
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-05 17:39:24
+ * @LastEditTime: 2021-04-12 02:00:07
 -->
 <template>
   <div class="search-bar content">
@@ -27,9 +27,12 @@
         v-model="input">
     </div>
     <div class="search-btn">
-      <button>
-        <img src="~assets/img/logo.png" alt="放大镜图片">
-      </button>
+      <el-button 
+        type="info" 
+        icon="el-icon-search"
+        @click="search">
+        搜索
+      </el-button>
     </div>
   </div>
 </template>
@@ -46,20 +49,38 @@ export default {
         {
           value: '2',
           label: '作者'
-        },
-        {
-          value: '3',
-          label: '主角'
-        },
-        {
-          value: '4',
-          label: '贴名'
         }
       ],
       value: '1',
       input: ''
     }
-  }
+  },
+  methods: {
+    search() {
+      // const path = {
+      //   path: '/search', 
+      //   query: {
+      //     select: this.value, 
+      //     input: this.input
+      //   }
+      // }
+      // this.$router.push(path)
+      if (this.value === '1') {
+        // 书名搜索
+        this.$post('/novel/ntitle', { ntitle: this.input })
+          .then(res => {
+            this.$bus.emit('results', res)
+          })
+      } else {
+        // 作者名搜索
+        this.$post('/novel/nauthor', { nauthor: this.input })
+          .then(res => {
+            this.$bus.emit('results', res)
+          })
+      }
+      this.$router.push('search')
+    }
+  },
 }
 </script>
 <style scoped>
@@ -98,7 +119,7 @@ export default {
 .search-input input {
   height: 48px;
   padding: 0;
-  width: 888px;
+  width: 878px;
   font-size: 1.3rem;
   text-indent: 1rem;
   outline: none;
@@ -113,9 +134,10 @@ export default {
   /* width: 60px; */
   display: inline-block;
   position: relative;
+  font-size: 1.3rem
 }
 .search-btn button {
-  width: 80px;
+  /* width: 80px; */
   background-color: rgb(99, 110, 114);
   height: 50px;
   outline: none;
@@ -125,8 +147,6 @@ export default {
   position: absolute;
   bottom: -1.04rem;
   border-radius: 0 10px 10px 0;
-  /* outline: none; */
-  /* vertical-align: text-top; */
 }
 .search-btn button:hover {
   background-color: #777777;
@@ -134,16 +154,5 @@ export default {
 /* 按钮被点击 */
 .search-btn button:active {
   background-color: #666666;
-}
-.search-btn button img {
-  width: 30px;
-  /* text-align: center; */
-  /* margin: 0 auto; */
-  /* line-height: 50px; */
-  /* position: absolute;
-  left: 25px;
-  top: -20px; */
-  position: relative;
-  top: 2px;
 }
 </style>

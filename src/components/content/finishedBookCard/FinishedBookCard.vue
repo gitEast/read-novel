@@ -4,7 +4,7 @@
  * @Description: 最终完成的首页的两个小说卡片，暂定十本小说，其实应该是二十本，而且想换字体
  * @Date: 2021-03-15 21:18:05
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-04 14:36:20
+ * @LastEditTime: 2021-04-12 02:17:14
 -->
 <template>
   <div class="book-cards">
@@ -13,8 +13,9 @@
         <template v-slot:novels-title>
           <span>原创小说</span>
         </template>
-        <book-card-item v-for="item in novels"
-          :key="item.id"
+        <book-card-item 
+          v-for="item in onovels"
+          :key="item.nid"
           :item="item">
         </book-card-item>
       </book-card>
@@ -25,8 +26,8 @@
           <span>衍生小说</span>
         </template>
         <book-card-item 
-          v-for="item in novels"
-          :key="item.id"
+          v-for="item in nonovels"
+          :key="item.nid"
           :item="item">
         </book-card-item>
       </book-card>
@@ -41,63 +42,25 @@ export default {
   name: 'FinishedBookCard',
   data() {
     return {
-      novels: [
-        {
-          id: '00001',
-          name: '地上霜',
-          author: '明月光'
-        },
-        {
-          id: '00002',
-          name: '白玉盘',
-          author: '云端'
-        },
-        {
-          id: '00003',
-          name: '将进酒',
-          author: '明镜'
-        },
-        {
-          id: '00004',
-          name: '鹳雀楼',
-          author: '孟浩然'
-        },
-        {
-          id: '00005',
-          name: '缘愁似个长',
-          author: '赠李白'
-        },
-        {
-          id: '00006',
-          name: '蜻蜓早有',
-          author: '小荷'
-        },
-        {
-          id: '00007',
-          name: '花满蹊',
-          author: '恰恰'
-        },
-        {
-          id: '00008',
-          name: '莲叶何田田',
-          author: '鱼戏'
-        },
-        {
-          id: '00009',
-          name: '锦官城',
-          author: '花重'
-        },
-        {
-          id: '00010',
-          name: '向天歌',
-          author: '曲项'
-        }
-      ]
+      onovels: [],
+      nonovels: []
     }
   },
   components: {
     BookCard,
     BookCardItem
+  },
+  created() {
+    this.$post('/novel/recommend_original', {})
+      .then(async (res) => {
+        this.onovels = res
+        try {
+          let res02 = await this.$post('/novel/recommend_noriginal', {})
+          this.nonovels = res02
+        } catch (error) {
+          console.log(error);
+        }
+      })
   }
 }
 </script>

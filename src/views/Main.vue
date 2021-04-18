@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-04 13:51:00
- * @LastEditTime: 2021-04-04 14:37:00
+ * @LastEditTime: 2021-04-10 03:28:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \read-novel\src\views\Main.vue
@@ -23,7 +23,11 @@ export default {
     FinishedNavBar,
     FooterBar
   },
-  watch: {
+  created() {
+    // localStorage.setItem('id', '')
+    // localStorage.setItem('act', '')
+    // localStorage.setItem('pwd', '')
+    // localStorage.setItem('role', '')
   }
 }
 </script>

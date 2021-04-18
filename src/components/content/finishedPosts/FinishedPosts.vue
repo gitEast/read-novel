@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-05 17:41:15
- * @LastEditTime: 2021-04-05 19:24:58
+ * @LastEditTime: 2021-04-12 22:26:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \read-novel\src\components\content\finishedPosts\FinishedPosts.vue
@@ -11,19 +11,19 @@
     <div class="posts">
       <post-item 
         v-for="post in currentPosts" 
-        :key="post.id"
-        @click="clickPost(post.id)">
+        :key="post.pid"
+        @click="clickPost(post.pid)">
         <template v-slot:post-title>
-          <h3>{{ post.title }}</h3>
+          <h3>{{ post.ptitle }}</h3>
         </template>
         <template v-slot:post-author>
-          <p>by{{ post.author }}</p>
+          <p>{{ post.uact?post.uact: '用户已注销' }}</p>
         </template>
         <template v-slot:post-time>
-          <p>{{ post.time }}</p>
+          <p>{{ post.pcreate }}</p>
         </template>
         <template v-slot:post-content>
-          <p>{{ post.content }}</p>
+          <p>{{ post.pcontent.length>20?(post.pcontent.slice(0, 20)+'...'): post.pcontent }}</p>
         </template>
       </post-item>
     </div>
@@ -47,99 +47,7 @@ export default {
   data() {
     return {
       total: 0,
-      posts: [
-        {
-          id: '0001',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0002',
-          title: '作者之死',
-          author: '罗兰·巴特',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0003',
-          title: '恋人絮语',
-          author: '罗兰·巴特',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0004',
-          title: '程序设计',
-          author: 'python',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0005',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0006',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0007',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0008',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0009',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0010',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0011',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0012',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '1111111111111111111111111111111111111111dafadsfadfdsfa'
-        },
-        {
-          id: '0013',
-          title: '乔纳森',
-          author: '卡勒',
-          time: '2005-01-03 12:11:10',
-          content: '111111111111111fdfadfdfa1111111111111dafadsfadfdsfa'
-        }
-      ],
+      posts: [],
       currentPage: 1,
       pageSize: 10,
       currentPosts: []
@@ -150,7 +58,12 @@ export default {
   },
   created() {
     // 获取初始化数据
-    this.currentPosts = this.posts
+    this.$post('/post/list', {})
+      .then(res => {
+        this.posts = res
+        this.getCurrentTable()
+      })
+    // this.currentPosts = this.posts
   },
   methods: {
     handleCurrentChange(val) {
@@ -161,8 +74,8 @@ export default {
     getCurrentTable() {
       this.currentPosts = this.posts.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
     },
-    clickPost(id) {
-      console.log('获取到的帖子的id是' + id);
+    clickPost(pid) {
+      this.$router.push('/post/' + pid)
     }
     
   },

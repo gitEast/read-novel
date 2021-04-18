@@ -4,7 +4,7 @@
  * @Description: 书本列表卡片
  * @Date: 2021-03-15 20:26:44
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-04 14:34:34
+ * @LastEditTime: 2021-04-09 01:23:29
 -->
 <template>
   <div class="book-card">
@@ -38,5 +38,6 @@ export default {
   font-weight: 600;
   text-align: center;
   color: #2d3436;
+  cursor: default;
 }
 </style>

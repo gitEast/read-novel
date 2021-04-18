@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-27 22:02:16
- * @LastEditTime: 2021-04-05 17:38:28
+ * @LastEditTime: 2021-04-11 02:49:05
  * @LastEditors: Please set LastEditors
  * @Description: 书籍搜索页
  * @FilePath: \read-novel\src\views\library\Library.vue
@@ -9,8 +9,8 @@
 <template>
   <div id="library">
     <search-bar></search-bar>
-    <finished-search-tags></finished-search-tags>
-    <finished-search-books></finished-search-books>
+    <finished-search-tags @getNovels="getNovels"></finished-search-tags>
+    <finished-search-books :novels="novels"></finished-search-books>
   </div>
 </template>
 <script>
@@ -20,6 +20,18 @@ import FinishedSearchBooks from 'components/content/finishedSearchBooks/Finished
 
 export default {
   name: 'Library',
+  data() {
+    return {
+      novels: []
+    }
+  },
+  methods: {
+    // 父组件接收子组件传来的值data
+    getNovels(data) {
+      this.novels = data
+      console.log(data);
+    }
+  },
   components: {
     SearchBar,
     FinishedSearchTags,
